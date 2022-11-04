@@ -41,6 +41,7 @@
             font-family: 'Font Awesome 5 Free';
         }
     </style>
+	@livewireStyles
 </head>
 <body>
 	<header class="section-header">
@@ -137,13 +138,7 @@
 						<h4 class="title text-dark">Quality Men's Hoodie for Winter, Men's Fashion <br> Casual Hoodie
 						</h4>
 						<div class="rating-wrap my-3">
-							<ul class="rating-stars">
-								<li style="width:85%" class="stars-active"> <img src="{{ url('images/misc/stars-active.svg') }}"
-										alt=""> </li>
-								<li> <img src="{{ url('images/misc/starts-disable.svg') }}" alt=""> </li>
-							</ul>
-							<b class="label-rating text-warning"> 4.5</b>
-							<i class="dot"></i>
+							<livewire:product-review-average :productId="$product->id" :avgRating="$product->avg_rating" />							
 							<span class="label-rating text-muted"> <i class="fa fa-shopping-basket"></i> 154 orders
 							</span>
 							<i class="dot"></i>
@@ -366,8 +361,12 @@
     <section class="padding-bottom bg-light">
         <div class="container">
             <div class="row">
-                <livewire:product-reviews :product="$product">
-                <livewire:product-review-general :product="$product">
+                <livewire:product-reviews :product="$product" :totalReviews="$product->total_reviews" />
+				@livewire('product-review-general', [
+					'productId' => $product->id,
+					'totalReviews' => $product->total_reviews,
+					'avgRating' => $product->avg_rating
+				])
             </div>
         </div>
     </section>
@@ -450,5 +449,6 @@
     <script src="{{ url('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url('plugins/fslightbox.js') }}"></script>
     <script src="{{ url('js/script.js') }}"></script>
+	@livewireScripts
 </body>
 </html>

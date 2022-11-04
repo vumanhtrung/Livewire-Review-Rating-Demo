@@ -8,24 +8,12 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index(): View
     {
-        $product = Product::first();
+        $product = Product::query()
+            ->withAvg('productReviews as avg_rating', 'rating')
+            ->withCount('productReviews as total_reviews')
+            ->first();
 
         return view('product_detail', compact('product'));
     }
