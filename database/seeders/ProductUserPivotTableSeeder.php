@@ -25,6 +25,7 @@ class ProductUserPivotTableSeeder extends Seeder
                 $product->users()->attach($user, [
                     'review' => $faker->text(),
                     'rating' => $faker->numberBetween(1, 5),
+                    'created_at' => $faker->dateTimeBetween("-3 month" , now()),
                 ]);
             }
         }

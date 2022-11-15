@@ -16,6 +16,7 @@ class ProductFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'price' => $this->faker->numberBetween(10000, 100000),
+            'created_at' => $this->faker->dateTimeBetween("-6 month" , now()),
         ];
     }
 }

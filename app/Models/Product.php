@@ -24,7 +24,8 @@ class Product extends Model
                 'review',
                 'rating',
             ])
-            ->withTimestamps();
+            ->withTimestamps()
+            ->latest('product_user.created_at');
     }
 
     public function productReviews(): HasMany

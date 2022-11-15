@@ -22,7 +22,7 @@
                             <h6 class="mb-0"> {{ $item->name }} </h6>
                             <div class="rating-wrap">
                                 <ul class="rating-stars">
-                                    <li style="width:{{ $item->review->rating * 20 }}%" class="stars-active">
+                                    <li style="width:{{ $item->review->percent }}%" class="stars-active">
                                         <img src="{{ url('images/misc/stars-active.svg') }}" alt="">
                                     </li>
                                     <li> 

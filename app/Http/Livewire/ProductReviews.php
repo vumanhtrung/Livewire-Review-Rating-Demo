@@ -22,9 +22,12 @@ class ProductReviews extends Component
     public function render(): View
     {
         $reviews = $this->product->users()
-            ->latest('pivot_created_at')
             ->take($this->perPage)
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                $item->review->percent = $item->review->rating * 20;
+                return $item;
+            });
 
         return view('livewire.product-reviews', compact('reviews'));
     }
